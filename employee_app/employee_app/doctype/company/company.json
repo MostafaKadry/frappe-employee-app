@@ -14,7 +14,9 @@
   {
    "fieldname": "company_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Company Name",
+   "reqd": 1,
    "unique": 1
   },
   {
@@ -26,13 +28,14 @@
   {
    "fieldname": "number_of_employees",
    "fieldtype": "Int",
-   "label": "Number of Employees"
+   "label": "Number of Employees",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-09 22:44:34.326837",
+ "modified": "2025-08-11 09:17:04.789953",
  "modified_by": "Administrator",
  "module": "Employee App",
  "name": "Company",

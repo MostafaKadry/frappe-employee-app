@@ -137,14 +137,13 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
-
+doc_events = {
+    "Employee": {
+        "after_insert": "employee_app.employee_app.doctype.department.department.update_employee_count",
+        "on_trash": "employee_app.employee_app.doctype.department.department.update_employee_count",
+        "on_update": "employee_app.employee_app.doctype.department.department.update_employee_count"
+    }
+}
 # Scheduled Tasks
 # ---------------
 
@@ -241,4 +240,8 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-
+import frappe
+def boot_session(bootinfo):
+    frappe.local.cookie_manager.cookies = {
+        k: {**v, "samesite": "None"} for k, v in frappe.local.cookie_manager.cookies.items()
+    }

@@ -34,7 +34,6 @@
    "reqd": 1
   },
   {
-   "fetch_from": "department.department_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -95,7 +94,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-10 00:01:03.168772",
+ "modified": "2025-08-11 16:15:02.734998",
  "modified_by": "Administrator",
  "module": "Employee App",
  "name": "Employee",
@@ -115,7 +114,9 @@
   }
  ],
  "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "employee_name"
 }

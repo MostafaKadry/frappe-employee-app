@@ -14,12 +14,15 @@
    "fieldname": "company",
    "fieldtype": "Link",
    "label": "Company",
-   "options": "Company"
+   "options": "Company",
+   "reqd": 1
   },
   {
    "fieldname": "department_name",
    "fieldtype": "Data",
-   "label": "Department Name"
+   "in_list_view": 1,
+   "label": "Department Name",
+   "reqd": 1
   },
   {
    "fieldname": "number_of_employees",
@@ -31,7 +34,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-09 22:52:11.470611",
+ "modified": "2025-08-11 14:12:37.176557",
  "modified_by": "Administrator",
  "module": "Employee App",
  "name": "Department",
@@ -51,7 +54,9 @@
   }
  ],
  "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "department_name"
 }
