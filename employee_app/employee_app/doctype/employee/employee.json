@@ -7,7 +7,7 @@
  "field_order": [
   "company",
   "department",
-  "employee_status",
+  "status",
   "employee_name",
   "email_address",
   "mobile_number",
@@ -38,16 +38,6 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Employee Name",
-   "reqd": 1
-  },
-  {
-   "default": "Application Received",
-   "fieldname": "employee_status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Employee Status",
-   "options": "Application Received\nInterview Scheduled\nNot Accepted\nWithdrawn\nHired\nFired",
-   "read_only": 1,
    "reqd": 1
   },
   {
@@ -89,12 +79,22 @@
    "hide_seconds": 1,
    "label": "Days Employed",
    "read_only": 1
+  },
+  {
+   "default": "Application Received",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Employee Status",
+   "options": "Application Received\nInterview Scheduled\nNot Accepted\nWithdrawn\nHired\nFired",
+   "read_only": 1,
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-11 16:15:02.734998",
+ "modified": "2025-08-11 23:48:44.970175",
  "modified_by": "Administrator",
  "module": "Employee App",
  "name": "Employee",
@@ -118,5 +118,8 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "employee_name"
+ "title_field": "employee_name",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
 }

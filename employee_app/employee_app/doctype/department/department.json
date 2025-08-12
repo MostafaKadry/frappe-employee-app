@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{department_name}-{company}",
  "creation": "2025-08-09 22:50:48.081718",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -22,7 +23,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Department Name",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "number_of_employees",
@@ -34,10 +36,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-11 14:12:37.176557",
+ "modified": "2025-08-12 01:14:52.060699",
  "modified_by": "Administrator",
  "module": "Employee App",
  "name": "Department",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -58,5 +61,8 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "department_name"
+ "title_field": "department_name",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
 }

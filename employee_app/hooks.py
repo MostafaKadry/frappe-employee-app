@@ -137,13 +137,6 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-doc_events = {
-    "Employee": {
-        "after_insert": "employee_app.employee_app.doctype.department.department.update_employee_count",
-        "on_trash": "employee_app.employee_app.doctype.department.department.update_employee_count",
-        "on_update": "employee_app.employee_app.doctype.department.department.update_employee_count"
-    }
-}
 # Scheduled Tasks
 # ---------------
 
