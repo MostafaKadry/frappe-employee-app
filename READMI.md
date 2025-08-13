@@ -61,9 +61,10 @@ After installation, access modules via Frappe Desk:
 
 ## 🖼️ Screenshots
 
-> _Real screenshots from the deployed app:_
+
 
 **Employee List**
+![WorkFlow](employee_app/public/images/employee_workflow.png)
 ![Employee List](https://employee-app-opal.vercel.app/_next/image?url=%2Fimages%2Femployee-list.png&w=800&q=75)
 
 **Department Overview**
@@ -72,7 +73,6 @@ After installation, access modules via Frappe Desk:
 **Company Dashboard**
 ![Company Dashboard](https://employee-app-opal.vercel.app/_next/image?url=%2Fimages%2Fcompany-dashboard.png&w=800&q=75)
 
-> _You can add more screenshots by uploading them to the repo or linking from the production app!_
 
 ---
 
@@ -85,7 +85,6 @@ Want to see it in action?
 
 ## ❓ FAQ
 
-> _Add frequently asked questions here!_
 >
 > **Q: Is the frontend open-source?**  
 > **A:** Yes! [employee-app frontend repo](https://github.com/MostafaKadry/employee-app.git)
