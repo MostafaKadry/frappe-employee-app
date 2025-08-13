@@ -51,8 +51,6 @@ def get_employee(**kwargs):
     name = kwargs.get("name")
     if not name:
         frappe.throw("Employee name is required.")
-    if not frappe.has_permission(doctype="Employee", ptype="read", doc=name):
-        frappe.throw("Not permitted", frappe.PermissionError)
 
     employee = frappe.db.get_value("Employee", name, EMPLOYEE_READ_FIELDS, as_dict=True)
     if not employee:
@@ -61,17 +59,18 @@ def get_employee(**kwargs):
 
 
 # READ - List employees
-@frappe.whitelist(allow_guest=False)
-def list_employees():
-    """List all employees the user can access."""
+@frappe.whitelist(allow_guest=False, methods=["GET"])
+def list_employees(*args, **kwargs):
+    """List all employees"""
     employees = frappe.get_all("Employee", fields=EMPLOYEE_READ_FIELDS)
     return employees
 
 
 # READ - Get employees count
-@frappe.whitelist(allow_guest=False,methods={"GET"})
+@frappe.whitelist(allow_guest=False,methods=["GET"])
 def get_all_employees_count():
     """Get the total number of employees."""
+   
     employee_count = frappe.db.count("Employee")
     api_response(
         status_code=200,
@@ -85,8 +84,7 @@ def get_all_employees_count():
 @frappe.whitelist(allow_guest=False)
 def get_recently_hired_employees():
     """Get employees hired within the last 'days' days."""
-    if not frappe.has_permission("Employee", "read"):
-        frappe.throw("Not permitted", frappe.PermissionError)
+    
     # to be done  get the real hired employees for now it just retrun last 5 add employees
     employees = frappe.get_all(
         "Employee", order_by="creation desc", limit=5, fields=EMPLOYEE_READ_FIELDS
@@ -109,10 +107,7 @@ def get_recently_hired_employees():
 def create_employee(*args, **kwargs):
     """Create a new Employee with all required fields."""
 
-    if not frappe.has_permission("Employee", "create"):
-        frappe.throw("Not permitted", frappe.PermissionError)
-
-    # Validate all required fields
+       # Validate all required fields
     missing_fields = [field for field in EMPLOYEE_WRITE_FIELDS if not kwargs.get(field)]
     if missing_fields:
         frappe.throw(f"Missing required fields: {', '.join(missing_fields)}")
@@ -178,12 +173,13 @@ def update_employee(name, **kwargs):
 @frappe.whitelist(allow_guest=False)
 def delete_employee(**kwargs):
     """Delete an Employee."""
-    if not frappe.has_permission(
-        doctype="Employee", ptype="delete", doc=kwargs["name"]
-    ):
-        frappe.throw("Not permitted", frappe.PermissionError)
+    frappe.throw("Not permitted", frappe.PermissionError)
 
     frappe.delete_doc("Employee", kwargs["name"])
     frappe.db.commit()
 
-    return {"message": f"Employee '{kwargs["name"]}' deleted successfully."}
+    api_response(
+        status_code=200,
+        message=f"Employee '{kwargs['name']}' deleted successfully.",
+        data=None,
+    )
