@@ -20,6 +20,13 @@ A modern, modular, and extensible Employee Management App built on [Frappe Frame
 
 ---
 
+## 🔗 Project Links
+
+- **Production Instance:** [employee-app-opal.vercel.app](https://employee-app-opal.vercel.app/)
+- **Frontend Repo:** [employee-app (frontend)](https://github.com/MostafaKadry/employee-app.git)
+
+---
+
 ## 📦 Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:
@@ -31,24 +38,6 @@ bench install-app employee_app
 ```
 
 For more details, see [Frappe App Installation Guide](https://frappeframework.com/docs/user/en/installation).
-
----
-
-## 🛠️ Contributing
-
-We use [pre-commit](https://pre-commit.com/) for code formatting and linting.
-To get started:
-
-```bash
-cd apps/employee_app
-pre-commit install
-```
-
-Pre-commit hooks for:
-- [ruff](https://github.com/astral-sh/ruff) (Python)
-- [eslint](https://eslint.org/) (JS)
-- [prettier](https://prettier.io/) (JS/JSON/Markdown)
-- [pyupgrade](https://github.com/asottile/pyupgrade) (Python)
 
 ---
 
@@ -68,31 +57,29 @@ After installation, access modules via Frappe Desk:
 - **Company**: Manage company entities.
 - **Reports**: Generate employee reports.
 
-API examples:
-
-```python
-# List departments
-frappe.call("employee_app.api.department.list_departments")
-
-# Get employees by department
-frappe.call("employee_app.api.department.get_department_related_employees", name="IT")
-```
-
 ---
 
 ## 🖼️ Screenshots
 
-> _Add screenshots of the UI, reports, or dashboards here!_
->
-> ![Screenshot Placeholder](https://via.placeholder.com/600x300?text=Screenshot)
+> _Real screenshots from the deployed app:_
+
+**Employee List**
+![Employee List](https://employee-app-opal.vercel.app/_next/image?url=%2Fimages%2Femployee-list.png&w=800&q=75)
+
+**Department Overview**
+![Department Overview](https://employee-app-opal.vercel.app/_next/image?url=%2Fimages%2Fdepartment-overview.png&w=800&q=75)
+
+**Company Dashboard**
+![Company Dashboard](https://employee-app-opal.vercel.app/_next/image?url=%2Fimages%2Fcompany-dashboard.png&w=800&q=75)
+
+> _You can add more screenshots by uploading them to the repo or linking from the production app!_
 
 ---
 
 ## 🌐 Demo
 
-> _Add link to your live demo or hosted instance here!_
->
-> [Try the Employee App Live](#)
+Want to see it in action?  
+👉 **[Try the Employee App Live](https://employee-app-opal.vercel.app/)**
 
 ---
 
@@ -100,11 +87,8 @@ frappe.call("employee_app.api.department.get_department_related_employees", name
 
 > _Add frequently asked questions here!_
 >
-> **Q: What is the minimum Frappe version required?**  
-> **A:** v14+
-
-> **Q: How do I add custom fields to Employee?**  
-> **A:** Use Frappe's DocType customization features.
+> **Q: Is the frontend open-source?**  
+> **A:** Yes! [employee-app frontend repo](https://github.com/MostafaKadry/employee-app.git)
 
 ---
 
@@ -117,25 +101,17 @@ frappe.call("employee_app.api.department.get_department_related_employees", name
 ---
 
 ## 📅 Roadmap
-
-- [ ] Add more advanced reporting features
-- [ ] Integrate leave and attendance modules
+- what done ?
+- what not done yet?
 - [ ] Add RESTful API documentation
+- [ ] DB Queries Pagination
 - [ ] UI enhancements
 
 ---
 
-## 📜 License
 
-MIT - see [license.txt](./license.txt) for details.
-
----
 
 ## 🙏 Acknowledgements
 
 - Powered by [Frappe Framework](https://frappeframework.com/)
-- Inspired by open-source HR solutions
 
----
-
-> _Feel free to customize this README with your branding, screenshots, demos, and more!_
