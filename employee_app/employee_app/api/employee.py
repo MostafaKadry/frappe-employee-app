@@ -3,7 +3,7 @@ import frappe
 EMPLOYEE_READ_FIELDS = [
     "name",
     "employee_name",
-    "status",
+    "workflow_state as status",
     "email_address",
     "mobile_number",
     "department",
@@ -12,6 +12,7 @@ EMPLOYEE_READ_FIELDS = [
     "designation_positiontitle",
     "hired_on",
     "days_employed",
+    
 ]
 EMPLOYEE_WRITE_FIELDS = [
     "employee_name",
@@ -22,6 +23,7 @@ EMPLOYEE_WRITE_FIELDS = [
     "address",
     "designation_positiontitle",
 ]
+
 restricted_fields = {
     "status": "Status cannot be set manually. It is automatically updated based on employment status.",
     "hired_on": "Hired On date cannot be set manually. It is automatically set to the current date when the employee is hired.",
@@ -62,19 +64,14 @@ def get_employee(**kwargs):
 @frappe.whitelist(allow_guest=False)
 def list_employees():
     """List all employees the user can access."""
-    if not frappe.has_permission("Employee", "read"):
-        frappe.throw("Not permitted", frappe.PermissionError)
     employees = frappe.get_all("Employee", fields=EMPLOYEE_READ_FIELDS)
     return employees
 
 
 # READ - Get employees count
-@frappe.whitelist(allow_guest=False)
+@frappe.whitelist(allow_guest=False,methods={"GET"})
 def get_all_employees_count():
     """Get the total number of employees."""
-    if not frappe.has_permission("Employee", "read"):
-        frappe.throw("Not permitted", frappe.PermissionError)
-
     employee_count = frappe.db.count("Employee")
     api_response(
         status_code=200,
