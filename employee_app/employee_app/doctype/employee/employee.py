@@ -3,10 +3,14 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils import getdate, nowdate
 
 class Employee(Document):
     def validate(self):
-        """Ensure department-company alignment and prevent manual edits to certain fields."""
+        # auto calculate employed_days.
+        self.auto_calc_employed_days()
+
+        # Ensure department-company alignment and prevent manual edits to certain fields.
         if self.department:
             dept_company = frappe.db.get_value("Department", self.department, "company")
             if dept_company and dept_company != self.company:
@@ -53,3 +57,15 @@ class Employee(Document):
             frappe.throw( f"Failed to update employee count for department {self.department} and company {self.company}")
 
 
+
+    def auto_calc_employed_days(self):
+        if self.status != "Hired" or not self.hired_on:
+            return
+        else:
+            hire_date = getdate(self.hired_on)
+            today = getdate(nowdate())
+		
+        if hire_date > today:
+            frappe.throw("Hire date cannot be in the future", exc=frappe.ValidationError)
+			
+        self.employed_days = (today - hire_date).days
