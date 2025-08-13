@@ -14,21 +14,12 @@ class Employee(Document):
                     f"Department {self.department} belongs to company {dept_company}, not {self.company}.",
                     "Invalid Department-Company Link"
                 )
-                frappe.throw(
+                frappe.response["message"]=(
                     f"Department {self.department} belongs to company {dept_company}, not {self.company}."
                 )
+                frappe.response["http_status_code"] = 400
 
-        # Prevent manual changes to system-controlled fields
-        restricted_fields = {
-            "status": "Status cannot be set manually. It is automatically updated based on employment status.",
-            "hired_on": "Hired On date cannot be set manually. It is automatically set to the current date when the employee is hired.",
-            "days_employed": "Days Employed cannot be set manually. It is automatically calculated based on the Hired On date."
-        }
-
-        # for field, message in restricted_fields.items():
-        #     if self.has_value_changed(field):
-        #         frappe.throw(message)
-
+                return
 
     def after_insert(self):
         self.update_employee_count()
@@ -38,7 +29,7 @@ class Employee(Document):
 
     def on_trash(self):
         self.update_employee_count()
-
+      
     def update_employee_count(self):
         """Update number_of_employees for related Department and Company."""
 		
@@ -56,6 +47,7 @@ class Employee(Document):
             # Update both records
             frappe.db.set_value("Department", self.department, "number_of_employees", employees_in_department_count)
             frappe.db.set_value("Company", self.company, "number_of_employees", employees_in_company_count)
+            frappe.db.commit()
 
         except Exception:
             frappe.throw( f"Failed to update employee count for department {self.department} and company {self.company}")

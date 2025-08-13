@@ -23,20 +23,20 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Department Name",
-   "reqd": 1,
-   "unique": 1
+   "reqd": 1
   },
   {
    "fieldname": "number_of_employees",
    "fieldtype": "Int",
    "label": "Number of Employees",
+   "non_negative": 1,
    "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-12 01:14:52.060699",
+ "modified": "2025-08-13 08:52:09.211132",
  "modified_by": "Administrator",
  "module": "Employee App",
  "name": "Department",
