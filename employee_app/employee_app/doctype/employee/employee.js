@@ -10,6 +10,12 @@ frappe.ui.form.on("Employee", {
                 }
             };
         });
+        frm.set_query("status", ()=>{
+            if (frm.doc.status === "Hired" && !frm.doc.hired_on) {
+                frm.set_value("hired_on", frappe.datetime.get_today());
+            }
+        })
         
 	},
+    
 });
