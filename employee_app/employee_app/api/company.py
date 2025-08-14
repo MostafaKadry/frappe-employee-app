@@ -26,7 +26,7 @@ def api_response(status_code, message, data=None):
 
 # READ - Get single company
 @frappe.whitelist(allow_guest=False)
-def get_company(**args, **kwargs):
+def get_company(*args, **kwargs):
     """Get details for a single Company."""
     name = kwargs.get("name")
     if not name:
