@@ -30,13 +30,24 @@ def get_company(**args, **kwargs):
     """Get details for a single Company."""
     name = kwargs.get("name")
     if not name:
-        frappe.throw("Company name is required.")
+        api_response(
+            status_code=400,
+            message="Company name is required.",
+            data=None
+        )
+        return
 
+    # Fetch company details
     company = frappe.db.get_value(
         "Company", name, COMPANY_READ_FIELDS, as_dict=True
     )
     if not company:
-        frappe.throw(f"Company '{name}' not found.")
+        api_response(
+            status_code=404,
+            message=f"Company '{name}' not found.",
+            data=None
+        )
+        return
     # get related departments and employees
     departments = get_company_related_departments(company=name)
     employees = get_company_related_employee(company=name)
