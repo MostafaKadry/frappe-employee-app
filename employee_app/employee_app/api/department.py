@@ -179,13 +179,6 @@ def delete_department(*args, **kwargs):
 @frappe.whitelist(allow_guest=False)
 def get_all_depratments_count(*args, **kwargs):
     """Get the total count of all departments."""
-    if not frappe.has_permission("Department", "read"):
-        frappe.throw("Not permitted", frappe.PermissionError)
-
     department_count = frappe.db.count("Department")
-    api_response(
-        status_code=200,
-        message="Total department count retrieved successfully.",
-        data={"total_departments": department_count},
-    )
-    
+    return department_count
+   

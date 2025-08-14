@@ -12,7 +12,7 @@ COMPANY_READ_FIELDS = [
 COMPANY_WRITE_FIELDS = ["company_name"]
 # utility functions
 # function to check if send restricted fields
-def is_restricted_field(field):
+def is_restricted_field(field, **kwargs):
     """Check if the field is restricted from manual editing."""
     restricted_fields = ["number_of_employees", "number_of_departments"]
     return field in restricted_fields
@@ -64,8 +64,8 @@ def get_company(*args, **kwargs):
 
 # READ - List companies
 @frappe.whitelist(allow_guest=False)
-def list_companies():
-    """List all companies the user can access."""
+def list_companies(*args, **kwargs):
+    """List all companies"""
     companies = frappe.get_all("Company", fields=COMPANY_READ_FIELDS)
     return companies
 

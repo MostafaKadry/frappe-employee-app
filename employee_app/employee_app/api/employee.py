@@ -59,7 +59,7 @@ def get_employee(**kwargs):
 
 
 # READ - List employees
-@frappe.whitelist(allow_guest=False, methods=["GET"])
+@frappe.whitelist(allow_guest=False)
 def list_employees(*args, **kwargs):
     """List all employees"""
     employees = frappe.get_all("Employee", fields=EMPLOYEE_READ_FIELDS)
@@ -67,39 +67,22 @@ def list_employees(*args, **kwargs):
 
 
 # READ - Get employees count
-@frappe.whitelist(allow_guest=False,methods=["GET"])
+@frappe.whitelist(allow_guest=False)
 def get_all_employees_count():
     """Get the total number of employees."""
-   
     employee_count = frappe.db.count("Employee")
-    api_response(
-        status_code=200,
-        message="Total number of employees retrieved successfully.",
-        data={"total_employees": employee_count},
-    )
-    # return {"total_employees": employee_count} --- IGNORE ---
+    return employee_count
 
 
 # read - get recently hired employees
 @frappe.whitelist(allow_guest=False)
 def get_recently_hired_employees():
     """Get employees hired within the last 'days' days."""
-    
-    # to be done  get the real hired employees for now it just retrun last 5 add employees
+    # to be done get the real hired employees for now it just retrun last 5 add employees
     employees = frappe.get_all(
         "Employee", order_by="creation desc", limit=5, fields=EMPLOYEE_READ_FIELDS
     )
-
-    if not employees:
-        api_response(
-            status_code=404, message="No recently hired employees found.", data=[]
-        )
-
-    api_response(
-        status_code=200,
-        message="Employees hired in the last few days retrieved successfully.",
-        data=employees,
-    )
+    return employees
 
 
 # CREATE - Add a new employee
