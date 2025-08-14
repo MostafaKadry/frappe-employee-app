@@ -1,0 +1,12 @@
+{
+ "allow_cors": "http://localhost:3000",
+ "cookie_secure": false,
+ "db_name": "_e2f9416513ed5882",
+ "db_password": "PNWY08F4JJF8SNXT",
+ "db_type": "mariadb",
+ "encryption_key": "SncP0nz6HZSxTlgDSAANJoY37KyT3_OlJZKTAhhtuoM=",
+ "allowed_referrers" : [
+  "http://localhost:3000",
+  "http://employee.site"
+ ]
+}

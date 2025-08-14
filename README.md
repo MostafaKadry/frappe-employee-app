@@ -77,6 +77,10 @@ A comprehensive Employee Management System built on the [Frappe Framework](https
    - Clear cache: `bench clear-cache`
    - Restart the bench: `bench restart`
    - Set up background jobs: `bench setup supervisor`
+3. **resoter backups**
+- I recommened to use this data because workflow is stored in database.
+   - `bench --site yoursite.local restore employee_app/backups/20250814_180003-employee_site-database.sql.gz`
+   - `bench --site yoursite.local migrate`
 
 For more details, refer to the [Frappe Installation Guide](https://frappeframework.com/docs/user/en/installation).
 
