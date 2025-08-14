@@ -16,7 +16,6 @@ A modern, modular, and extensible Employee Management App built on [Frappe Frame
 - **Permissions & Security**: Fine-grained access control for sensitive data.
 - **APIs**: Easily access department and employee data programmatically.
 - **Extensible**: Designed to be customized and expanded for your needs.
-- **Modern Dev Practices**: Pre-commit hooks, CI/CD, linting, and code formatting.
 
 ---
 
@@ -63,8 +62,11 @@ After installation, access modules via Frappe Desk:
 
 
 
-**Employee List**
+**Employee Wrokflow**
 ![WorkFlow](employee_app/public/images/employee_workflow.png)
+
+
+**Employee Wrokflow**
 ![Employee List](https://employee-app-opal.vercel.app/_next/image?url=%2Fimages%2Femployee-list.png&w=800&q=75)
 
 **Department Overview**

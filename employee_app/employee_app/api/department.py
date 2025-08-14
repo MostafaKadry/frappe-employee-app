@@ -20,19 +20,26 @@ def api_response(status_code, message, data=None):
 
 # READ - Get single department
 @frappe.whitelist(allow_guest=False)
-def get_department(**kwargs):
+def get_department(*args, **kwargs):
     """Get details for a single Department."""
-    if not frappe.has_permission(
-        doctype="Department", ptype="read", doc=kwargs["name"]
-    ):
-        frappe.throw("Not permitted", frappe.PermissionError)
-
+    name = kwargs.get("name")
+    if not name:
+        frappe.throw("Department name is required.")
     department = frappe.db.get_value(
-        "Department", kwargs["name"], DEPARTMENT_READ_FIELDS, as_dict=True
+        "Department", name, DEPARTMENT_READ_FIELDS, as_dict=True
     )
     if not department:
-        frappe.throw(f"Department '{kwargs['name']}' not found.")
-    return department
+        frappe.throw(f"Department '{name}' not found.")
+    # get related employees
+    employees = get_department_related_employees(department=name)
+    api_response(
+        status_code=200,
+        message=f"Department '{name}' retrieved successfully.",
+        data={
+            "department": department,
+            "employees": employees
+        }
+    )
 
 
 # READ - List departments
