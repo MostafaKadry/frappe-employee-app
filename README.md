@@ -61,13 +61,16 @@ After installation, access modules via Frappe Desk:
 ## 🖼️ Screenshots
 
 
+**Employee App Databse ERD**
+![Employee APP ERD](employee_app/public/images/empployee-app-erd.png)
+
+**Client Side Dashboard**
+![Dashboard](/employee_app/public/images/dashbord.png)
+
 
 **Employee Wrokflow**
 ![WorkFlow](employee_app/public/images/employee_workflow.png)
 
-
-**Employee Wrokflow**
-![Employee List](https://employee-app-opal.vercel.app/_next/image?url=%2Fimages%2Femployee-list.png&w=800&q=75)
 
 **Department Overview**
 ![Department Overview](https://employee-app-opal.vercel.app/_next/image?url=%2Fimages%2Fdepartment-overview.png&w=800&q=75)
