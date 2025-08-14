@@ -72,21 +72,8 @@ A comprehensive Employee Management System built on the [Frappe Framework](https
    bench --site yoursite.local migrate
    ```
 
-2. **Manual Installation**
-   ```bash
-   # Clone the repository
-   git clone https://github.com/MostafaKadry/frappe-employee-app.git
-   cd frappe-employee-app
-   
-   # Install Python dependencies
-   pip install -e .
-   
-   # Build assets
-   npm install
-   npm run build
-   ```
 
-3. **Post-Installation**
+2. **Post-Installation**
    - Clear cache: `bench clear-cache`
    - Restart the bench: `bench restart`
    - Set up background jobs: `bench setup supervisor`
