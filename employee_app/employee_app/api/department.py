@@ -10,6 +10,7 @@ DEPARTMENT_READ_FIELDS = [
 
 DEPARTMENT_WRITE_FIELDS = ["department_name", "company"]
 RESTRICTED_FIELDS = ["number_of_employees"]
+
 # API Response Helper Fn
 def api_response(status_code, message, data=None):
     frappe.local.response["http_status_code"] = status_code
@@ -24,14 +25,26 @@ def get_department(*args, **kwargs):
     """Get details for a single Department."""
     name = kwargs.get("name")
     if not name:
-        frappe.throw("Department name is required.")
+        frappe.logger.info(f"Department name is required. {kwargs}")
+        api_response(
+            status_code=400,
+            message="Department name is required!",
+            data=None
+        )
+        return
     department = frappe.db.get_value(
         "Department", name, DEPARTMENT_READ_FIELDS, as_dict=True
     )
     if not department:
-        frappe.throw(f"Department '{name}' not found.")
+        frappe.logger.info(f"Department not found. {name}")
+        api_response(
+            status_code=404,
+            message=f"Department '{name}' not found.",
+            data=None
+        )
+        return
     # get related employees
-    employees = get_department_related_employees(department=name)
+    employees = get_department_related_employees(department=name, company=department.company)
     api_response(
         status_code=200,
         message=f"Department '{name}' retrieved successfully.",
@@ -44,37 +57,37 @@ def get_department(*args, **kwargs):
 
 # READ - List departments
 @frappe.whitelist(allow_guest=False)
-def list_departments():
+def list_departments(*args, **kwargs):
     """List all departments the user can access."""
-    if not frappe.has_permission("Department", "read"):
-        frappe.throw("Not permitted", frappe.PermissionError)
     departments = frappe.get_all("Department", fields=DEPARTMENT_READ_FIELDS)
-    return departments
+    api_response(
+        status_code=200,
+        message="Departments retrieved successfully.",
+        data=departments
+    )
 
 
 # READ - Get employees related to a specific department
 @frappe.whitelist(allow_guest=False)
 def get_department_related_employees(*args, **kwargs):
     """Get all employees related to a specific department."""
-    department = kwargs.get("name")
-    if not department:
-        frappe.throw("Department name is required.")
+    department = kwargs.get("department")
+    company = kwargs.get("company")
 
-    if not frappe.has_permission(doctype="Employee", ptype="read"):
-        frappe.throw("Not permitted", frappe.PermissionError)
-    department_company = frappe.db.get_value("Department", department, "company")
+    if not department or not company:
+        return
+
     employees = frappe.get_all(
         "Employee",
-        filters={"department": department, "company": department_company},
+        filters={"department": department, "company": company},
         fields=EMPLOYEE_READ_FIELDS,
     )
-
     return employees
 
 
 # CREATE - Add a new department
 @frappe.whitelist(allow_guest=False)
-def create_department(**kwargs):
+def create_department(*args, **kwargs):
     """Create a new Department linked to a company."""
     department_name = kwargs.get("department_name")
     company = kwargs.get("company")
@@ -112,7 +125,7 @@ def create_department(**kwargs):
 
 # UPDATE - Update an existing department
 @frappe.whitelist(allow_guest=False)
-def update_department(**kwargs):
+def update_department(*args, **kwargs):
     name = kwargs.get("name")
     department_name = kwargs.get("department_name")
     company = kwargs.get("company")
@@ -144,7 +157,7 @@ def update_department(**kwargs):
 
 # DELETE - Remove a department
 @frappe.whitelist(allow_guest=False)
-def delete_department(**kwargs):
+def delete_department(*args, **kwargs):
     """Delete a Department."""
 
     name = kwargs["name"]
