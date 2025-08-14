@@ -3,7 +3,7 @@ import frappe
 EMPLOYEE_READ_FIELDS = [
     "name",
     "employee_name",
-    "status",
+    "workflow_state as status",
     "email_address",
     "mobile_number",
     "department",
@@ -12,6 +12,7 @@ EMPLOYEE_READ_FIELDS = [
     "designation_positiontitle",
     "hired_on",
     "days_employed",
+    
 ]
 EMPLOYEE_WRITE_FIELDS = [
     "employee_name",
@@ -22,6 +23,7 @@ EMPLOYEE_WRITE_FIELDS = [
     "address",
     "designation_positiontitle",
 ]
+
 restricted_fields = {
     "status": "Status cannot be set manually. It is automatically updated based on employment status.",
     "hired_on": "Hired On date cannot be set manually. It is automatically set to the current date when the employee is hired.",

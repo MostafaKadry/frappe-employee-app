@@ -1,41 +1,116 @@
-### Employee App
+# Employee App
 
-Employee Management App
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./license.txt)
+[![CI](https://github.com/MostafaKadry/frappe-employee-app/actions/workflows/ci.yml/badge.svg)](https://github.com/MostafaKadry/frappe-employee-app/actions/workflows/ci.yml)
+[![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://pre-commit.com/)
 
-### Installation
+A modern, modular, and extensible Employee Management App built on [Frappe Framework](https://frappeframework.com/). Manage employees, departments, and companies with robust reporting, permissions, and developer-friendly practices.
+
+---
+
+## 🚀 Features
+
+- **Employee Management**: Create, update, and organize employee records.
+- **Department & Company Modules**: Structure your organization for efficient management.
+- **Reporting**: Built-in employee reports for insights and analytics.
+- **Permissions & Security**: Fine-grained access control for sensitive data.
+- **APIs**: Easily access department and employee data programmatically.
+- **Extensible**: Designed to be customized and expanded for your needs.
+- **Modern Dev Practices**: Pre-commit hooks, CI/CD, linting, and code formatting.
+
+---
+
+## 🔗 Project Links
+
+- **Production Instance:** [employee-app-opal.vercel.app](https://employee-app-opal.vercel.app/)
+- **Frontend Repo:** [employee-app (frontend)](https://github.com/MostafaKadry/employee-app.git)
+
+---
+
+## 📦 Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:
 
 ```bash
 cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch develop
+bench get-app https://github.com/MostafaKadry/frappe-employee-app --branch develop
 bench install-app employee_app
 ```
 
-### Contributing
+For more details, see [Frappe App Installation Guide](https://frappeframework.com/docs/user/en/installation).
 
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
+---
 
-```bash
-cd apps/employee_app
-pre-commit install
-```
+## ⚡ CI/CD
 
-Pre-commit is configured to use the following tools for checking and formatting your code:
+- **CI**: GitHub Actions - installs and tests app on every push to `develop`.
+- **Linters**: [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every PR.
 
-- ruff
-- eslint
-- prettier
-- pyupgrade
+---
 
-### CI
+## 📚 Usage
 
-This app can use GitHub Actions for CI. The following workflows are configured:
+After installation, access modules via Frappe Desk:
 
-- CI: Installs this app and runs unit tests on every push to `develop` branch.
-- Linters: Runs [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every pull request.
+- **Employee**: Add/edit/view employees.
+- **Department**: Organize employees by department.
+- **Company**: Manage company entities.
+- **Reports**: Generate employee reports.
+
+---
+
+## 🖼️ Screenshots
 
 
-### License
 
-mit
+**Employee List**
+![WorkFlow](employee_app/public/images/employee_workflow.png)
+![Employee List](https://employee-app-opal.vercel.app/_next/image?url=%2Fimages%2Femployee-list.png&w=800&q=75)
+
+**Department Overview**
+![Department Overview](https://employee-app-opal.vercel.app/_next/image?url=%2Fimages%2Fdepartment-overview.png&w=800&q=75)
+
+**Company Dashboard**
+![Company Dashboard](https://employee-app-opal.vercel.app/_next/image?url=%2Fimages%2Fcompany-dashboard.png&w=800&q=75)
+
+
+---
+
+## 🌐 Demo
+
+Want to see it in action?  
+👉 **[Try the Employee App Live](https://employee-app-opal.vercel.app/)**
+
+---
+
+## ❓ FAQ
+
+>
+> **Q: Is the frontend open-source?**  
+> **A:** Yes! [employee-app frontend repo](https://github.com/MostafaKadry/employee-app.git)
+
+---
+
+## 🧑‍💻 Support
+
+- **Issues & Bugs**: [GitHub Issues](https://github.com/MostafaKadry/frappe-employee-app/issues)
+- **Discussions/Questions**: [GitHub Discussions](https://github.com/MostafaKadry/frappe-employee-app/discussions)
+- **Email**: mostafakadry806@gmail.com
+
+---
+
+## 📅 Roadmap
+- what done ?
+- what not done yet?
+- [ ] Add RESTful API documentation
+- [ ] DB Queries Pagination
+- [ ] UI enhancements
+
+---
+
+
+
+## 🙏 Acknowledgements
+
+- Powered by [Frappe Framework](https://frappeframework.com/)
+
