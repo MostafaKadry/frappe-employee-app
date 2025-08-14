@@ -26,36 +26,45 @@ def api_response(status_code, message, data=None):
 
 # READ - Get single company
 @frappe.whitelist(allow_guest=False)
-def get_company(name):
+def get_company(**args, **kwargs):
     """Get details for a single Company."""
-    if not frappe.has_permission(doctype="Company", ptype="read", doc=name):
-        frappe.throw("Not permitted", frappe.PermissionError)
+    name = kwargs.get("name")
+    if not name:
+        frappe.throw("Company name is required.")
 
     company = frappe.db.get_value(
         "Company", name, COMPANY_READ_FIELDS, as_dict=True
     )
     if not company:
         frappe.throw(f"Company '{name}' not found.")
-    return company
+    # get related departments and employees
+    departments = get_company_related_departments(company=name)
+    employees = get_company_related_employee(company=name)
+    
+    api_response(
+        status_code=200,
+        message=f"Company '{name}' retrieved successfully.",
+        data={
+            "company": company,
+            "departments": departments,
+            "employees": employees
+        }
+    )
 
 # READ - List companies
 @frappe.whitelist(allow_guest=False)
 def list_companies():
     """List all companies the user can access."""
-    if not frappe.has_permission("Company", "read"):
-        frappe.throw("Not permitted", frappe.PermissionError)
     companies = frappe.get_all("Company", fields=COMPANY_READ_FIELDS)
     return companies
 
 # READ - Get departments related to a specific company
 @frappe.whitelist(allow_guest=False)
-def get_company_related_departments(company):
+def get_company_related_departments(*args, **kwargs):
     """Get all departments related to a specific company."""
+    company = kwargs.get("company")
     if not company:
         frappe.throw("Company name is required.")
-    
-    if not frappe.has_permission(doctype="Department", ptype="read"):
-        frappe.throw("Not permitted", frappe.PermissionError)
 
     departments = frappe.get_all(
         "Department",
@@ -72,9 +81,6 @@ def get_company_related_employee(*args, **kwargs):
     company = kwargs.get("company")
     if not company:
         frappe.throw("Company name is required.")
-    
-    if not frappe.has_permission(doctype="Employee", ptype="read"):
-        frappe.throw("Not permitted", frappe.PermissionError)
 
     employees = frappe.get_all(
         "Employee",
@@ -87,10 +93,7 @@ def get_company_related_employee(*args, **kwargs):
 # READ - Get all companies count
 @frappe.whitelist(allow_guest=False)
 def get_all_companies_count():
-    """Get the total number of companies."""
-    if not frappe.has_permission("Company", "read"):
-        frappe.throw("Not permitted", frappe.PermissionError)
-    
+    """Get the total number of companies."""   
     company_count = frappe.db.count("Company")
     api_response(
         status_code=200,
@@ -104,8 +107,6 @@ def create_company(**kwargs):
     """Create a new Company."""
     company_name = kwargs.get("company_name")
 
-    if not frappe.has_permission("Company", "create"):
-        frappe.throw("Not permitted", frappe.PermissionError)
     if not company_name:
         frappe.throw("Company name is required.")
     for field in kwargs:
@@ -127,8 +128,6 @@ def update_company(**kwargs):
     
     name = kwargs.get("name")
     company_name = kwargs.get("company_name")
-
-
 
     if not name:
         frappe.throw("Company 'name' is required.")
@@ -163,9 +162,6 @@ def delete_company(**kwargs):
         frappe.response["http_status_code"] = 400
         return
     """Delete a Company."""
-    if not frappe.has_permission(doctype="Company", ptype="delete", doc=name):
-        frappe.throw("Not permitted", frappe.PermissionError)
-
     company = frappe.get_doc("Company", name)
     if not company:
         frappe.throw(f"Company '{name}' not found.")
