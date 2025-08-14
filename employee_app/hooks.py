@@ -140,13 +140,14 @@ app_license = "mit"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
+scheduler_events = {
 # 	"all": [
 # 		"employee_app.tasks.all"
 # 	],
-# 	"daily": [
-# 		"employee_app.tasks.daily"
-# 	],
+"daily": [
+        "employee_app.tasks.update_days_employed_for_all"
+    ]
+
 # 	"hourly": [
 # 		"employee_app.tasks.hourly"
 # 	],
@@ -156,7 +157,7 @@ app_license = "mit"
 # 	"monthly": [
 # 		"employee_app.tasks.monthly"
 # 	],
-# }
+}
 
 # Testing
 # -------

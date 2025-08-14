@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import today
+from frappe.utils import today, getdate
 
 class Employee(Document):
     def validate(self):
@@ -65,4 +65,3 @@ class Employee(Document):
             self.reload()
         
             
-    

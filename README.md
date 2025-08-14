@@ -9,7 +9,6 @@ A modern, modular, and extensible Employee Management App built on [Frappe Frame
 ---
 
 ## 🚀 Features
-
 - **Employee Management**: Create, update, and organize employee records.
 - **Department & Company Modules**: Structure your organization for efficient management.
 - **Reporting**: Built-in employee reports for insights and analytics.
@@ -21,7 +20,7 @@ A modern, modular, and extensible Employee Management App built on [Frappe Frame
 
 ## 🔗 Project Links
 
-- **Production Instance:** [employee-app-opal.vercel.app](https://employee-app-opal.vercel.app/)
+- **Production Instance:** [employee-app-opal.vercel.app](https://employee-app-opal.vercel.app/) for sorry server subscription ended.
 - **Frontend Repo:** [employee-app (frontend)](https://github.com/MostafaKadry/employee-app.git)
 
 ---
@@ -37,13 +36,6 @@ bench install-app employee_app
 ```
 
 For more details, see [Frappe App Installation Guide](https://frappeframework.com/docs/user/en/installation).
-
----
-
-## ⚡ CI/CD
-
-- **CI**: GitHub Actions - installs and tests app on every push to `develop`.
-- **Linters**: [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every PR.
 
 ---
 
@@ -72,8 +64,8 @@ After installation, access modules via Frappe Desk:
 ![WorkFlow](employee_app/public/images/employee_workflow.png)
 
 
-**Department Overview**
-![Department Overview](https://employee-app-opal.vercel.app/_next/image?url=%2Fimages%2Fdepartment-overview.png&w=800&q=75)
+**Employee Report using NextJs code**
+![Department Overview](employee_app/public/images/employee_report.png)
 
 **Company Dashboard**
 ![Company Dashboard](https://employee-app-opal.vercel.app/_next/image?url=%2Fimages%2Fcompany-dashboard.png&w=800&q=75)
@@ -106,10 +98,22 @@ Want to see it in action?
 
 ## 📅 Roadmap
 - what done ?
+- [] Build Backend Modules
+- [] Create a RESTful API that supports all CRUD operations for all models
+- [] Automatically calculate the number of departments and employees in the company
+- [] Automatically calculate the number of employees in the department
+- [] Automatically calculate the number of days an employee has been with the company based on the hiring date using Cron Job Hooks
+- [] Handle cascading deletions
+- [] Workflow, Developed a workflow to model the onboarding process for new employees
+- [] Used Read Frappe User Module to Implement role-based access control.
+- [] Ensure that authentication and authorization is always handled throughout user activity
+- [] 
 - what not done yet?
 - [ ] Add RESTful API documentation
 - [ ] DB Queries Pagination
-- [ ] UI enhancements
+- [ ] integrate workflow actions with frontend
+- [ ] Include unit tests
+- [ ] Include integration tests
 
 ---
 
