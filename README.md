@@ -176,7 +176,7 @@ Want to see it in action?
 ## 📅 Roadmap
 - what done ?
 - Build Backend Modules
-- Create a RESTful API that supports all CRUD operations for all models
+- Create a API that supports all CRUD operations for all models
 - Automatically calculate the number of departments and employees in the company
 - Automatically calculate the number of employees in the department
 - Automatically calculate the number of days an employee has been with the company based on the hiring date using Cron Job Hooks
@@ -185,7 +185,7 @@ Want to see it in action?
 - Used Read Frappe User Module to Implement role-based access control.
 - Ensure that authentication and authorization is always handled throughout user activity
 - what not done yet?
-- [ ]Add RESTful API documentation
+- [ ] Add API documentation
 - [ ] DB Queries Pagination
 - [ ] integrate workflow actions with frontend
 - [ ] Include unit tests
